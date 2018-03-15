@@ -2,7 +2,6 @@ import {postList} from '../data/postData.js';
 
 // 通过symbol值设定私有方法
 let execSetStorageSync = Symbol();
-let updatePostStatus = Symbol();
 
 class DBpost {
   constructor () {
@@ -50,7 +49,7 @@ class DBpost {
   // 更新当前读取文章信息
   // 传入对象
   // 对象包含2个属性，category: 需要更新的标签，id: 当前文章id, status: 布尔值需要更改状态;
-  [updatePostStatus] (obj) {
+  updatePostStatus (obj) {
     let postId = obj.id;
     let status = obj.status;
     let category = obj.category;

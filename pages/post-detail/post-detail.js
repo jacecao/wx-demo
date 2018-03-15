@@ -1,4 +1,5 @@
 import {DBpost} from '../../db/DBpost.js';
+import {DBuser} from '../../db/DBuser.js';
 // pages/post-detail/post-detail.js
 Page({
 
@@ -6,7 +7,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+
+  },
+  // 收藏和取消收藏
+  onCollection () {
+    if (this.data.collection) {
+      this.setData({collection: false});
+      this.dbpost.updatePostStatus({
+        id: this.id,
+        status: false,
+        category: 'saved'
+      });
+    } else {
+      this.setData({ collection: true });
+      this.dbpost.updatePostStatus({
+        id: this.id,
+        status: true,
+        category: 'saved'
+      });
+    }
+    // this.dbuser.updateCollection({
+    //   postId: this.id,
+    //   postUrl: `/pages/post-detail/post-detail?id=${this.id}`
+    // });
   },
 
   /**
@@ -14,9 +37,15 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
+    this.id = options.id;
     this.dbpost = new DBpost();
+    this.dbuser = new DBuser();
     this.post = this.dbpost.getPostById(options.id).data;
-    this.setData({post: this.post});
+    let _result = this.dbuser.checkCollection(options.id);
+    this.setData({
+      post: this.post,
+      collection: _result.status
+    });
   },
 
   /**
