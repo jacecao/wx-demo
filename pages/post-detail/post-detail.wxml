@@ -1,0 +1,26 @@
+<image class="post-image" src="{{post.postImage}}" mode="aspectFill"></image>
+<text class="post-title">{{post.title}}</text>
+
+<view class="post-info">
+  <image class="post-author-log"></image>
+  <text class="post-author-name">{{post.author}}</text>
+  <text class="post-author-date">创建时间：{{post.date}}</text>
+</view>
+
+<view class="post-content">
+  <text>{{post.content}}</text>
+</view>
+
+<view class="post-tool">
+  <image class="viewed"></image>
+  <text>{{post.viewedNum}}</text>
+
+  <image class="great"></image>
+  <text>{{post.greatNum}}</text>
+
+  <image class="reply"></image>
+  <text>{{post.replyNum}}</text>
+
+  <image class="saved"></image>
+  <text>{{post.savedNum}}</text>
+</view>

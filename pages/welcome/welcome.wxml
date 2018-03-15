@@ -1,0 +1,7 @@
+<view class="container">
+  <image class="avter" src="/images/header.jpg" mode='aspectFill'></image>
+  <text class="moto">Max Design</text>
+  <view class="jouner-container" catchtap='onTapJump'>
+    <text class="jouner">开启UI设计之旅</text>
+  </view>
+</view>

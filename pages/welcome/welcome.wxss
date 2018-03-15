@@ -1,0 +1,40 @@
+page {
+  background: #eee;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container image {
+  margin-top: 40px;
+}
+
+.moto {
+  margin-top: 150rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #9f4311;
+}
+
+.avter {
+  width: 100%;
+}
+
+.jouner-container {
+  margin-top: 20px;
+  border: 1px solid #ea5a3c;
+  width: 200rpx;
+  height: 90rpx;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.jouner {
+  font-size: 20rpx;
+  font-weight: bold;
+  line-height: 90rpx;
+  color: #ea5a3c;
+}

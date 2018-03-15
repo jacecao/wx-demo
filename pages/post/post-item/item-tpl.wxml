@@ -1,0 +1,27 @@
+<template name="postItemTpl">
+
+  <view class="post-info">
+    <image class="post-author-log"></image>
+    <text class="post-author-name">{{author}}</text>
+    <text class="post-author-date">创建时间：{{date}}</text>
+  </view>
+
+  <text class="post-title">{{title}}</text>
+  <image class="post-image" src="{{postImage}}" mode="aspectFill"></image>
+  <text class="post-desc">{{desc}}</text>
+
+  <view class="post-like">
+    <image class="viewed"></image>
+    <text>{{viewedNum}}</text>
+
+    <image class="great"></image>
+    <text>{{greatNum}}</text>
+
+    <image class="reply"></image>
+    <text>{{replyNum}}</text>
+
+    <image class="saved"></image>
+    <text>{{savedNum}}</text>
+  </view>
+
+</template>
