@@ -7,18 +7,11 @@ class DBpost {
   constructor () {
     // 初始设定缓存key
     this.storageName = 'postList';
-    // 初始输出对象
-    this.msg = {
-      errno: '404',
-      errmsg: 'not found',
-      data: '',
-      index: ''
-    };
   }
   // 获取所有的文章信息
   getAllPostData () {
     let res = wx.getStorageSync(this.storageName);
-    let obj = this.msg;
+    let obj = new Object();
     if (!res) {
       res = postList;
       this[execSetStorageSync](res);
@@ -32,7 +25,7 @@ class DBpost {
   // 获取指定id的文章信息
   getPostById (id) {
     let postData = this.getAllPostData().data;
-    let obj = this.msg;
+    let obj = new Object();
     postData.forEach((post, index) => {
       if (post.postId == id) {
         // 组装输出数据
@@ -61,10 +54,12 @@ class DBpost {
     switch (category) {
       case 'saved':
         // 处理收藏
-        if (!status) {
+        if (status) {
           post.data.savedNum ++;
+          // console.log(post.data.savedNum);
         } else {
-          post.data.saveNum --;
+          post.data.savedNum --;
+          // console.log(post.data.savedNum);
         }
         break;
     }

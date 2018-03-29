@@ -11,27 +11,35 @@ Page({
   },
   // 收藏和取消收藏
   onCollection () {
+    let _post = null;
     if (this.data.collection) {
       this.setData({collection: false});
-      this.dbpost.updatePostStatus({
+      _post = this.dbpost.updatePostStatus({
         id: this.id,
         status: false,
         category: 'saved'
       });
+      this.setData({'post.savedNum': _post.savedNum});
     } else {
       this.setData({ collection: true });
-      this.dbpost.updatePostStatus({
+      _post = this.dbpost.updatePostStatus({
         id: this.id,
         status: true,
         category: 'saved'
       });
+      this.setData({'post.savedNum': _post.savedNum });
     }
-    // this.dbuser.updateCollection({
-    //   postId: this.id,
-    //   postUrl: `/pages/post-detail/post-detail?id=${this.id}`
-    // });
+    let status = this.dbuser.updateCollection({
+      postId: this.id,
+      postUrl: `/pages/post-detail/post-detail?id=${this.id}`
+    });
+    wx.showToast({
+      title: status ? '取消收藏' : '收藏成功',
+      duration: 1000,
+      icon: 'success',
+      mask: true
+    })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */

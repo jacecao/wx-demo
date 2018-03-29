@@ -1,4 +1,4 @@
-export const user = {
+export let user = {
   log: '',
   savedPost: [{
     postId: 2,

@@ -9,23 +9,23 @@ class DBuser {
     // 初始设定缓存key
     this.storageName = 'user';
     this.Collections = user.savedPost;
-    // 初始输出对象
-    this.msg = {
-      errno: '404',
-      errmsg: 'not found',
-      data: '',
-      index: ''
-    };
   }
-  
+  getAllcollections () {
+    let collections = wx.getStorageSync(this.storageName);
+    if (!collections) {
+      collections = this.Collections;
+    }
+    return collections;
+  }
   // 获取用户收藏列表
   checkCollection (post_id) {
     let obj = {
       status: false,
       index: undefined
     };
-    this.Collections.forEach((collection,index) => {
-      if (collection.postId === parseInt(post_id)) {
+    let collections = this.getAllcollections();
+    collections.forEach((collection,index) => {
+      if (collection.postId == parseInt(post_id)) {
         obj.status = true,
         obj.index = index;
       }
@@ -38,12 +38,16 @@ class DBuser {
   // 对象包含2个属性，postId: 需要收藏的id, postUrl: 文章地址;
   updateCollection (obj) {
     let result = this.checkCollection(obj.postId);
+    let collections = this.getAllcollections();
+    let status = false;
     if (result.status) {
-      this.Collections.splice(result.index, 1);
+      collections.splice(result.index, 1);
     } else {
-      this.Collections.push(obj);
+      collections.push(obj);
+      status = true;
     }
-    this[execSetStorageSync](this.Collections);
+    this[execSetStorageSync](collections);
+    return status;
   }
 
   // 缓存数据
