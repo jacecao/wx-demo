@@ -8,7 +8,7 @@ class DBuser {
   constructor() {
     // 初始设定缓存key
     this.storageName = 'user';
-    this.Collections = user.savedPost;
+    this.Collections = user.collectedPost;
   }
   getAllcollections () {
     let collections = wx.getStorageSync(this.storageName);

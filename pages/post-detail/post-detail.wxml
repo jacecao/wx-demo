@@ -12,24 +12,33 @@
 </view>
 
 <view class="post-tool">
-  <image class="viewed" src="/images/icon/view.png"></image>
-  <text>{{post.viewedNum}}</text>
+  <view class="buttons">
+    <image class="viewed" src="/images/icon/view.png"></image>
+    <text>{{post.viewedNum}}</text>
+  </view>
+  
+  <view class="buttons">
+    <image class="great" src="/images/icon/like.png"></image>
+    <text>{{post.greatNum}}</text>
+  </view>
+  
+  <view class="buttons">
+    <image class="reply" src="/images/icon/rating.png"></image>
+    <text>{{post.replyNum}}</text>
+  </view>
 
-  <image class="great" src="/images/icon/like.png"></image>
-  <text>{{post.greatNum}}</text>
-
-  <image class="reply" src="/images/icon/rating.png"></image>
-  <text>{{post.replyNum}}</text>
-
-  <image 
-    wx:if="{{collection}}" 
-    class="saved" 
-    src="/images/icon/save-active.png"
-    catchtap="onCollection"
-  ></image>
-  <image wx:else class="saved" 
-    src="/images/icon/save.png"
-    catchtap="onCollection"
-  ></image>
-  <text>{{post.savedNum}}</text>
+  <view class="buttons">
+    <image 
+        wx:if="{{collection}}" 
+        class="saved" 
+        src="/images/icon/save-active.png"
+        catchtap="onCollection"
+    ></image>
+    <image wx:else class="saved" 
+        src="/images/icon/save.png"
+        bindtap="onCollection"
+    ></image>
+    <text>{{post.collectedNum}}</text>  
+  </view>
+ 
 </view>

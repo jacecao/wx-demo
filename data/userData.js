@@ -1,6 +1,6 @@
 export let user = {
   log: '',
-  savedPost: [{
+  collectedPost: [{
     postId: 2,
     postUrl:''
   }]

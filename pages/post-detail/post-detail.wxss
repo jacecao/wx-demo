@@ -5,7 +5,8 @@
 }
 
 .post-title {
-  margin: 20px 0 0 20px;
+  display: block;
+  margin: 12px 0 0 20px;
   font-size: 40rpx;
 }
 
@@ -45,16 +46,24 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
   font-size: 24rpx;
   margin: 20px 0 0 20px;
 }
 
+.post-tool .buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .post-tool image {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   background-color: #ededed;
+  border-radius: 24px;
+  margin-left: 12px;
 }
 
 .post-tool text {
-  margin:0 10px 0 6px;
+  margin:0 10px;
 }

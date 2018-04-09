@@ -22,6 +22,8 @@ App({
       wx.setStorageSync('postList', postData.postList);
     }
     */
+    // 设置浏览历史
+    wx.setStorageSync('browse_history', []);
     // 强制更新缓存数据  
     wx.setStorageSync('postList', postList);
   },
@@ -31,6 +33,13 @@ App({
    */
   onShow: function (options) {
     console.log('show');
+    console.log(options);
+    // 获取设备信息
+    wx.getSystemInfo({
+      success: function(res) {
+        // console.log(res);
+      },
+    })
   },
 
   /**

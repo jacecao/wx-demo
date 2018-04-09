@@ -17,24 +17,24 @@ Page({
       _post = this.dbpost.updatePostStatus({
         id: this.id,
         status: false,
-        category: 'saved'
+        category: 'collected'
       });
-      this.setData({'post.savedNum': _post.savedNum});
+      this.setData({ 'post.collectedNum': _post.collectedNum});
     } else {
       this.setData({ collection: true });
       _post = this.dbpost.updatePostStatus({
         id: this.id,
         status: true,
-        category: 'saved'
+        category: 'collected'
       });
-      this.setData({'post.savedNum': _post.savedNum });
+      this.setData({ 'post.collectedNum': _post.collectedNum });
     }
     let status = this.dbuser.updateCollection({
       postId: this.id,
       postUrl: `/pages/post-detail/post-detail?id=${this.id}`
     });
     wx.showToast({
-      title: status ? '取消收藏' : '收藏成功',
+      title: status ? '收藏成功' : '取消收藏',
       duration: 1000,
       icon: 'success',
       mask: true
@@ -64,16 +64,24 @@ Page({
     if (title.length > 12) {
       title = title.substr(0, 12) + '......';
     }
+    // 设置顶部导航标题
     wx.setNavigationBarTitle({
       title
-    })
+    });
+    // 增加文章阅读数量
+    let _post = this.dbpost.updatePostStatus({
+      id: this.id,
+      category: 'viewed'
+    });
+    // 更新数据
+    this.setData({'post.viewedNum': _post.viewedNum});
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    
   },
 
   /**

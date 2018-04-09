@@ -38,8 +38,8 @@ let postList = [{
   },
   viewedNum: 208,
   replyNum: 92,
-  savedNum: 7,
-  greatNum: 400,
+  collectedNum: 7,
+  greatNum: 100,
   comment: [{
     username: '',
     avatar: '/images/avatar/timg-2.jpeg',

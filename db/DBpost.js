@@ -41,7 +41,10 @@ class DBpost {
   
   // 更新当前读取文章信息
   // 传入对象
-  // 对象包含2个属性，category: 需要更新的标签，id: 当前文章id, status: 布尔值需要更改状态;
+  // 对象包含3个属性，
+  // category: 需要更新的标签[必须]，
+  // id: 当前文章id [必须],
+  // status: 布尔值需要更改状态 [更改收藏和点赞时必须传入];
   updatePostStatus (obj) {
     let postId = obj.id;
     let status = obj.status;
@@ -50,18 +53,35 @@ class DBpost {
     let post = this.getPostById(postId);
     // 获取所有文章
     let allPost = this.getAllPostData().data;
+    // 检查参数是否正确传入 TODO
+    /**********************/ 
     // 操作数据
     switch (category) {
-      case 'saved':
+      // 收藏
+      case 'collected':
         // 处理收藏
         if (status) {
-          post.data.savedNum ++;
+          post.data.collectedNum ++;
           // console.log(post.data.savedNum);
         } else {
-          post.data.savedNum --;
+          post.data.collectedNum --;
           // console.log(post.data.savedNum);
         }
         break;
+      // 阅读数量 
+      case 'viewed':
+        // 获取浏览器数据
+        let browse_history = wx.getStorageSync('browse_history');
+        // 检索是否已经浏览
+        let _res = browse_history.filter((value) => {
+          return value == postId;
+        });
+        if (!_res || _res.length == 0) {
+          browse_history.push(postId);
+          post.data.viewedNum ++;
+          wx.setStorageSync('browse_history', browse_history)
+        }
+        break;  
     }
     // 更新数据
     allPost[post.index] = post.data;
