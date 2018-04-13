@@ -14,8 +14,8 @@ let postList = [{
   },
   viewedNum: 108,
   replyNum: 92,
-  savedNum: 7,
-  greatNum: 300,
+  collectedNum: 7,
+  enjoyNum: 300,
   comment: [{
     username: '',
     avatar: '/images/avatar/timg-3.jpeg',
@@ -37,9 +37,9 @@ let postList = [{
     coverImg: ''
   },
   viewedNum: 208,
-  replyNum: 92,
+  replyNum: 1,
   collectedNum: 7,
-  greatNum: 100,
+  enjoyNum: 100,
   comment: [{
     username: '',
     avatar: '/images/avatar/timg-2.jpeg',

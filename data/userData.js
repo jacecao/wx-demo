@@ -3,5 +3,6 @@ export let user = {
   collectedPost: [{
     postId: 2,
     postUrl:''
-  }]
+  }],
+  enjoyPost: []
 };

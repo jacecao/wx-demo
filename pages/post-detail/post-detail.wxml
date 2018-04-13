@@ -17,9 +17,16 @@
     <text>{{post.viewedNum}}</text>
   </view>
   
-  <view class="buttons">
-    <image class="great" src="/images/icon/like.png"></image>
-    <text>{{post.greatNum}}</text>
+  <view class="buttons" catchtap='onEnjoy'>
+    <image wx:if="{{enjoy}}" 
+      class="great" 
+      src="/images/icon/like.png"
+    ></image>
+    <image wx:else 
+      class="great" 
+      src="/images/icon/unlike.png"
+    ></image>
+    <text>{{post.enjoyNum}}</text>
   </view>
   
   <view class="buttons">
@@ -27,16 +34,15 @@
     <text>{{post.replyNum}}</text>
   </view>
 
-  <view class="buttons">
+  <view class="buttons" catchtap="onCollection">
     <image 
-        wx:if="{{collection}}" 
-        class="saved" 
-        src="/images/icon/save-active.png"
-        catchtap="onCollection"
+      wx:if="{{collection}}" 
+      class="saved" 
+      src="/images/icon/save-active.png"
     ></image>
-    <image wx:else class="saved" 
-        src="/images/icon/save.png"
-        bindtap="onCollection"
+    <image wx:else 
+      class="saved" 
+      src="/images/icon/save.png"
     ></image>
     <text>{{post.collectedNum}}</text>  
   </view>

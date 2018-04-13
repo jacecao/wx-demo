@@ -81,6 +81,14 @@ class DBpost {
           post.data.viewedNum ++;
           wx.setStorageSync('browse_history', browse_history)
         }
+        break;
+      // 点击喜欢 
+      case 'enjoy':
+        if (status) {
+          post.data.enjoyNum++;
+        } else {
+          post.data.enjoyNum--;
+        }
         break;  
     }
     // 更新数据

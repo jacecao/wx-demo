@@ -40,6 +40,37 @@ Page({
       mask: true
     })
   },
+  // 喜欢
+  onEnjoy () {
+    let _post = null;
+    if (this.data.enjoy) {
+      this.setData({ enjoy: false });
+      _post = this.dbpost.updatePostStatus({
+        id: this.id,
+        status: false,
+        category: 'enjoy'
+      });
+      this.setData({ 'post.enjoyNum': _post.enjoyNum });
+    } else {
+      this.setData({ enjoy: true });
+      _post = this.dbpost.updatePostStatus({
+        id: this.id,
+        status: true,
+        category: 'enjoy'
+      });
+      this.setData({ 'post.enjoyNum': _post.enjoyNum });
+    }
+    let status = this.dbuser.updateEnjoy({
+      postId: this.id,
+      postUrl: `/pages/post-detail/post-detail?id=${this.id}`
+    });
+    wx.showToast({
+      title: status ? '加入喜欢' : '不喜欢',
+      duration: 1000,
+      icon: 'success',
+      mask: true
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -50,9 +81,11 @@ Page({
     this.dbuser = new DBuser();
     this.post = this.dbpost.getPostById(options.id).data;
     let _result = this.dbuser.checkCollection(options.id);
+    let _enjoy = this.dbuser.checkEnjoy(options.id);
     this.setData({
       post: this.post,
-      collection: _result.status
+      collection: _result.status,
+      enjoy: _enjoy.status
     });
   },
 
